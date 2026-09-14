@@ -54,7 +54,10 @@ class LLMS_Functions_Templates extends LLMS_UnitTestCase {
 
 		$this->assertStringContainsString( '<div class="llms-syllabus-section">', $output );
 		$this->assertStringContainsString( '<header class="llms-section-header">', $output );
-		$this->assertStringContainsString( '<div class="llms-section-lessons">', $output );
+		$this->assertStringContainsString( 'class="llms-section-toggle"', $output );
+		$this->assertStringContainsString( 'aria-expanded="true"', $output );
+		$this->assertStringContainsString( 'aria-controls="llms-syllabus-', $output );
+		$this->assertStringContainsString( 'class="llms-section-lessons"', $output );
 		$this->assertStringContainsString( '<div class="llms-lesson-preview', $output );
 
 		$post = null;

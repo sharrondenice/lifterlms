@@ -10,12 +10,16 @@
  * @since 4.4.0 Pass the progressive lesson order value to the lesson-preview template.
  * @since 7.1.3 Add paragraph tag to wrap message when sections or lessons are empty.
  * @since [version] Group sections and their lessons for course layout and navigation.
+ * @since [version] Add accessible, progressively enhanced section controls.
  * @version [version]
  */
 defined( 'ABSPATH' ) || exit;
 global $post;
 $course   = new LLMS_Course( $post );
 $sections = $course->get_sections();
+
+static $syllabus_instance = 0;
+++$syllabus_instance;
 ?>
 
 <div class="clear"></div>
@@ -33,18 +37,45 @@ $sections = $course->get_sections();
 			<?php
 			$lesson_order          = 0;
 			$display_section_title = apply_filters( 'llms_display_outline_section_titles', true );
+			$lessons               = $section->get_lessons();
+			$section_id            = sprintf( 'llms-syllabus-%1$d-%2$d-%3$d', $course->get( 'id' ), $syllabus_instance, $section->get( 'id' ) );
 			?>
 
 			<div class="llms-syllabus-section">
 
 			<?php if ( $display_section_title ) : ?>
 				<header class="llms-section-header">
-					<h3 class="llms-h3 llms-section-title"><?php echo esc_html( get_the_title( $section->get( 'id' ) ) ); ?></h3>
+					<h3 class="llms-h3 llms-section-title">
+						<button
+							class="llms-section-toggle"
+							type="button"
+							aria-controls="<?php echo esc_attr( $section_id ); ?>"
+							aria-expanded="true"
+							id="<?php echo esc_attr( $section_id ); ?>-toggle"
+						>
+							<span class="llms-section-name"><?php echo esc_html( get_the_title( $section->get( 'id' ) ) ); ?></span>
+							<span class="llms-section-count">
+								<?php
+								printf(
+									/* translators: %d: Number of lessons in a course section. */
+									esc_html( _n( '%d lesson', '%d lessons', count( $lessons ), 'lifterlms' ) ),
+									absint( count( $lessons ) )
+								);
+								?>
+							</span>
+							<span class="llms-section-caret" aria-hidden="true"></span>
+						</button>
+					</h3>
 				</header>
 			<?php endif; ?>
 
-			<?php $lessons = $section->get_lessons(); ?>
-			<div class="llms-section-lessons">
+			<div
+				class="llms-section-lessons"
+				id="<?php echo esc_attr( $section_id ); ?>"
+				<?php if ( $display_section_title ) : ?>
+					aria-labelledby="<?php echo esc_attr( $section_id ); ?>-toggle"
+				<?php endif; ?>
+			>
 			<?php if ( $lessons ) : ?>
 
 				<?php foreach ( $lessons as $lesson ) : ?>

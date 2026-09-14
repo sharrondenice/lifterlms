@@ -203,3 +203,260 @@
 		display: block;
 	}
 }
+
+// Modern single-course syllabus. Baseline lesson and navigation rules above
+// remain available when previews are rendered in widgets and other contexts.
+.single-course .type-course {
+	.llms-syllabus-wrapper {
+		margin: 0;
+		text-align: left;
+	}
+
+	.llms-syllabus-section {
+		background: var(--llms-color-surface);
+		border: 1px solid var(--llms-color-border);
+		border-radius: var(--llms-radius);
+		overflow: hidden;
+
+		+ .llms-syllabus-section {
+			margin-top: 18px;
+		}
+
+		&.llms-section--open .llms-section-header {
+			background: var(--llms-color-surface-subtle);
+		}
+
+		&.llms-section--closed .llms-section-caret {
+			transform: rotate(-45deg);
+		}
+	}
+
+	.llms-section-header {
+		background: var(--llms-color-surface);
+		border-bottom: 1px solid var(--llms-color-border);
+	}
+
+	.llms-section-title {
+		font-size: 1rem;
+		line-height: 1.35;
+		margin: 0;
+
+		+ .llms-lesson-preview {
+			border-top: 0;
+		}
+	}
+
+	.llms-section-toggle {
+		align-items: center;
+		appearance: none;
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+		color: var(--llms-color-text);
+		cursor: pointer;
+		display: grid;
+		font: inherit;
+		gap: 6px 14px;
+		grid-template-columns: minmax(0, 1fr) auto 14px;
+		line-height: inherit;
+		padding: 18px 20px;
+		text-align: left;
+		width: 100%;
+
+		&:hover {
+			background: var(--llms-color-surface-subtle);
+			color: var(--llms-color-text);
+		}
+
+		&:focus-visible {
+			box-shadow: inset 0 0 0 3px var(--llms-color-primary);
+			outline: 0;
+		}
+	}
+
+	.llms-section-name {
+		font-weight: 700;
+		min-width: 0;
+	}
+
+	.llms-section-count {
+		color: var(--llms-color-muted);
+		font-size: 0.8rem;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	.llms-section-caret {
+		border-bottom: 2px solid currentColor;
+		border-right: 2px solid currentColor;
+		display: block;
+		height: 8px;
+		transform: rotate(45deg);
+		transform-origin: center;
+		width: 8px;
+	}
+
+	.llms-section-lessons[hidden] {
+		display: none;
+	}
+
+	.llms-lesson-preview {
+		border: 0;
+		border-bottom: 1px solid var(--llms-color-border);
+		color: var(--llms-color-text);
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		section {
+			background: var(--llms-color-surface);
+		}
+
+		.llms-lesson-link {
+			color: var(--llms-color-text);
+			padding: 16px 20px 10px;
+			transition: background-color 160ms ease;
+
+			&:hover {
+				background: var(--llms-color-surface-subtle);
+			}
+
+			&:focus-visible {
+				box-shadow: inset 0 0 0 3px var(--llms-color-primary);
+				outline: 0;
+			}
+
+			&:visited {
+				color: var(--llms-color-text);
+			}
+
+			.llms-lesson-preview-row {
+				align-items: flex-start;
+				gap: 16px;
+			}
+		}
+
+		.llms-lesson-locked {
+			background: var(--llms-color-surface-subtle);
+			color: var(--llms-color-muted);
+
+			.llms-lesson-link {
+				color: var(--llms-color-muted);
+				cursor: not-allowed;
+			}
+		}
+
+		.llms-lesson-thumbnail {
+			border-radius: 6px;
+			margin-bottom: 12px;
+			overflow: hidden;
+
+			img {
+				aspect-ratio: 16 / 9;
+				object-fit: cover;
+			}
+		}
+
+		.llms-main {
+			min-width: 0;
+		}
+
+		.llms-extra {
+			color: var(--llms-color-muted);
+			flex: 0 0 54px;
+			min-width: 0;
+		}
+
+		.llms-lesson-counter {
+			font-size: 0.75rem;
+			font-variant-numeric: tabular-nums;
+			margin-bottom: 6px;
+		}
+
+		.llms-lesson-title {
+			font-size: 0.975rem;
+			font-weight: 650;
+			line-height: 1.45;
+			margin: 0;
+		}
+
+		.llms-lesson-excerpt {
+			color: var(--llms-color-muted);
+			font-size: 0.85rem;
+			line-height: 1.55;
+			margin-top: 5px;
+		}
+
+		.llms-lesson-meta {
+			align-items: center;
+			color: var(--llms-color-muted);
+			flex-wrap: wrap;
+			font-size: 0.75rem;
+			gap: 8px 14px;
+			padding: 0 20px 12px;
+
+			> * {
+				margin-left: 0;
+			}
+		}
+
+		.llms-icon-free {
+			background: var(--llms-color-primary);
+			border-radius: 4px;
+			font-size: 0.7rem;
+			padding: 4px 6px;
+		}
+
+		&.is-free,
+		&.is-complete {
+			.llms-lesson-complete {
+				color: var(--llms-color-primary);
+			}
+		}
+
+		&.is-incomplete .llms-lesson-complete {
+			color: var(--llms-color-muted);
+			opacity: 0.55;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		.llms-section-toggle {
+			gap: 4px 10px;
+			grid-template-columns: minmax(0, 1fr) 12px;
+			padding: 16px;
+		}
+
+		.llms-section-count {
+			grid-column: 1;
+			grid-row: 2;
+		}
+
+		.llms-section-caret {
+			grid-column: 2;
+			grid-row: 1 / span 2;
+		}
+
+		.llms-lesson-preview {
+			.llms-lesson-link {
+				padding: 14px 16px 8px;
+			}
+
+			.llms-extra {
+				flex-basis: 44px;
+			}
+
+			.llms-lesson-meta {
+				padding: 0 16px 12px;
+			}
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.llms-section-caret,
+		.llms-lesson-link {
+			transition: none;
+		}
+	}
+}
