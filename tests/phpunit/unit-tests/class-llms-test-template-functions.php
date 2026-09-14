@@ -10,6 +10,58 @@
 class LLMS_Functions_Templates extends LLMS_UnitTestCase {
 
 	/**
+	 * Test the single course progress template structure.
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
+	public function test_single_course_progress_structure() {
+
+		global $post;
+
+		$course_id = $this->generate_mock_courses( 1, 1, 1, 0 )[0];
+		$student   = $this->get_mock_student();
+		$post      = get_post( $course_id );
+
+		wp_set_current_user( $student->get_id() );
+		llms_enroll_student( $student->get_id(), $course_id );
+
+		$output = $this->get_output( 'lifterlms_template_single_course_progress' );
+
+		$this->assertStringContainsString( '<section class="llms-course-progress llms-course-card">', $output );
+		$this->assertStringContainsString( '<h3 class="llms-course-card-title">Course Progress</h3>', $output );
+		$this->assertStringContainsString( '<div class="llms-course-progress-action">', $output );
+
+		$post = null;
+
+	}
+
+	/**
+	 * Test the single course syllabus template structure.
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
+	public function test_single_course_syllabus_structure() {
+
+		global $post;
+
+		$course_id = $this->generate_mock_courses( 1, 1, 1, 0 )[0];
+		$post      = get_post( $course_id );
+		$output    = $this->get_output( 'lifterlms_template_single_syllabus' );
+
+		$this->assertStringContainsString( '<div class="llms-syllabus-section">', $output );
+		$this->assertStringContainsString( '<header class="llms-section-header">', $output );
+		$this->assertStringContainsString( '<div class="llms-section-lessons">', $output );
+		$this->assertStringContainsString( '<div class="llms-lesson-preview', $output );
+
+		$post = null;
+
+	}
+
+	/**
 	 * Test lifterlms_course_continue_button() func
 	 *
 	 * @since 3.15.0
