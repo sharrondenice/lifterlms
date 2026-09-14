@@ -4,8 +4,7 @@
  * a button for the next incomplete lesson in the course
  *
  * @since    1.0.0
- * @since    [version] Added semantic course progress card structure.
- * @version  [version]
+ * @version  3.11.1
  */
 
 defined( 'ABSPATH' ) || exit;
