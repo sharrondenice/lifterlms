@@ -5,8 +5,7 @@
  * @author   LifterLMS
  * @package  LifterLMS/Templates
  * @since    1.0.0
- * @since    [version] Added a layout wrapper around the after-summary course components.
- * @version  [version]
+ * @version  3.0.3
  */
 defined( 'ABSPATH' ) || exit;
 
