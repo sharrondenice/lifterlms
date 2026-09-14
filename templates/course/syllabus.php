@@ -9,7 +9,8 @@
  * @since 3.24.0 Unknown.
  * @since 4.4.0 Pass the progressive lesson order value to the lesson-preview template.
  * @since 7.1.3 Add paragraph tag to wrap message when sections or lessons are empty.
- * @version 7.1.3
+ * @since [version] Group sections and their lessons for course layout and navigation.
+ * @version [version]
  */
 defined( 'ABSPATH' ) || exit;
 global $post;
@@ -29,13 +30,21 @@ $sections = $course->get_sections();
 
 		<?php foreach ( $sections as $section ) : ?>
 
-			<?php $lesson_order = 0; ?>
+			<?php
+			$lesson_order          = 0;
+			$display_section_title = apply_filters( 'llms_display_outline_section_titles', true );
+			?>
 
-			<?php if ( apply_filters( 'llms_display_outline_section_titles', true ) ) : ?>
-				<h3 class="llms-h3 llms-section-title"><?php echo esc_html( get_the_title( $section->get( 'id' ) ) ); ?></h3>
+			<div class="llms-syllabus-section">
+
+			<?php if ( $display_section_title ) : ?>
+				<header class="llms-section-header">
+					<h3 class="llms-h3 llms-section-title"><?php echo esc_html( get_the_title( $section->get( 'id' ) ) ); ?></h3>
+				</header>
 			<?php endif; ?>
 
 			<?php $lessons = $section->get_lessons(); ?>
+			<div class="llms-section-lessons">
 			<?php if ( $lessons ) : ?>
 
 				<?php foreach ( $lessons as $lesson ) : ?>
@@ -58,6 +67,8 @@ $sections = $course->get_sections();
 				<p><?php esc_html_e( 'This section does not have any lessons.', 'lifterlms' ); ?></p>
 
 			<?php endif; ?>
+			</div>
+			</div>
 
 		<?php endforeach; ?>
 

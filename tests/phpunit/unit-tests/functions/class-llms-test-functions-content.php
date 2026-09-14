@@ -113,7 +113,8 @@ class LLMS_Test_Functions_Content extends LLMS_UnitTestCase {
 
 		// Additions added to the end.
 		$additions = array(
-			'<div class="llms-meta-info">',
+			'<div class="llms-course-experience">',
+			'<div class="llms-meta-info llms-course-card llms-course-meta-card">',
 			'<section class="llms-instructor-info">',
 			'<div class="llms-syllabus-wrapper">',
 		);
@@ -155,7 +156,8 @@ class LLMS_Test_Functions_Content extends LLMS_UnitTestCase {
 
 		// Additions added to the end.
 		$additions = array(
-			'<div class="llms-meta-info">',
+			'<div class="llms-course-experience">',
+			'<div class="llms-meta-info llms-course-card llms-course-meta-card">',
 			'<section class="llms-instructor-info">',
 			'<div class="llms-syllabus-wrapper">',
 		);

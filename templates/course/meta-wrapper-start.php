@@ -4,7 +4,8 @@
  *
  * @package  LifterLMS/Templates
  * @since    3.0.0
- * @version  3.25.1
+ * @since    [version] Added course card classes to the metadata wrapper.
+ * @version  [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -15,7 +16,7 @@ if ( ! in_array( $title_tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ) ) ) {
 }
 ?>
 
-<div class="llms-meta-info">
+<div class="llms-meta-info llms-course-card llms-course-meta-card">
 	<<?php echo esc_html( $title_tag ); ?> class="llms-meta-title">
 		<?php echo wp_kses_post( apply_filters( 'llms_course_meta_info_title', esc_html_x( 'Course Information', 'course meta info title', 'lifterlms' ) ) ); ?>
 	</<?php echo esc_html( $title_tag ); ?>>
