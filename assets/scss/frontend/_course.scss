@@ -1,17 +1,298 @@
+// Single course design system.
+//
+// Keep these rules beneath the WordPress single-course body class so course
+// components embedded on other screens continue to use their existing styles.
+.single-course .type-course {
+	--llms-color-primary: var(--wp--preset--color--primary, #{$color-brand-blue});
+	--llms-color-text: var(--wp--preset--color--contrast, #{$color-cinder});
+	--llms-color-muted: #{$color-darkgrey};
+	--llms-color-border: #{$color-border};
+	--llms-color-surface: var(--wp--preset--color--base, #{$color-white});
+	--llms-color-surface-subtle: #f7f7f8;
+	--llms-radius: 8px;
+	--llms-content-width: 1200px;
+	--llms-course-gap: clamp(24px, 3vw, 40px);
+
+	box-sizing: border-box;
+	color: var(--llms-color-text);
+	margin-inline: auto;
+	max-width: var(--llms-content-width);
+	width: 100%;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: inherit;
+	}
+
+	.entry-title,
+	.llms-title {
+		color: var(--llms-color-text);
+		font-size: clamp(2rem, 4vw, 3rem);
+		letter-spacing: -0.025em;
+		line-height: 1.12;
+		margin-block: 0 20px;
+	}
+
+	.llms-course-image,
+	> .wp-post-image,
+	.llms-featured-image {
+		aspect-ratio: 16 / 9;
+		border-radius: var(--llms-radius);
+		display: block;
+		height: auto;
+		margin: 0 0 32px;
+		max-width: 100%;
+		object-fit: cover;
+		width: 100%;
+	}
+
+	.llms-video-wrapper,
+	.llms-audio-wrapper {
+		margin-bottom: 32px;
+	}
+
+	.llms-video-wrapper .center-video {
+		border-radius: var(--llms-radius);
+		overflow: hidden;
+	}
+
+	.llms-full-description,
+	> .entry-content {
+		font-size: 1rem;
+		line-height: 1.75;
+
+		> :first-child {
+			margin-top: 0;
+		}
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+
+		h2,
+		h3,
+		h4 {
+			color: var(--llms-color-text);
+			line-height: 1.25;
+			margin-block: 1.75em 0.65em;
+		}
+
+		p,
+		ul,
+		ol {
+			margin-block: 0 1.15em;
+		}
+
+		li + li {
+			margin-top: 0.45em;
+		}
+	}
+
+	.llms-course-experience {
+		display: grid;
+		gap: var(--llms-course-gap);
+		grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+		margin-block: 40px;
+
+		> * {
+			min-width: 0;
+		}
+
+		> .llms-course-progress,
+		> .llms-meta-info,
+		> .llms-access-plans {
+			grid-column: 2;
+		}
+
+		> .llms-course-progress {
+			grid-row: 1;
+		}
+
+		> .llms-syllabus-wrapper,
+		> .llms-reviews,
+		> .review_box {
+			grid-column: 1;
+		}
+
+		> .llms-syllabus-wrapper {
+			grid-row: 1 / span 3;
+		}
+	}
+
+	.llms-course-card,
+	.llms-meta-info,
+	.llms-instructor-info,
+	.llms-access-plans {
+		background: var(--llms-color-surface);
+		border: 1px solid var(--llms-color-border);
+		border-radius: var(--llms-radius);
+		box-shadow: none;
+		margin: 0;
+		padding: clamp(20px, 2.5vw, 28px);
+	}
+
+	.llms-course-card-title,
+	.llms-meta-title {
+		color: var(--llms-color-text);
+		font-size: 1.125rem;
+		font-weight: 700;
+		line-height: 1.3;
+		margin: 0 0 18px;
+	}
+
+	.llms-meta-info {
+		display: grid;
+		gap: 0;
+
+		.llms-meta-title {
+			margin-bottom: 12px;
+		}
+
+		.llms-meta {
+			border-top: 1px solid var(--llms-color-border);
+			padding-block: 12px;
+
+			p {
+				color: var(--llms-color-muted);
+				font-size: 0.925rem;
+				line-height: 1.5;
+				margin: 0;
+			}
+
+			span,
+			a {
+				color: var(--llms-color-text);
+				font-weight: 600;
+			}
+		}
+
+		.llms-instructor-info {
+			border: 0;
+			border-top: 1px solid var(--llms-color-border);
+			border-radius: 0;
+			margin-top: 0;
+			padding: 16px 0 0;
+		}
+	}
+
+	.llms-course-progress-action {
+		margin-top: 20px;
+
+		.llms-course-continue-button,
+		.llms-button-primary {
+			display: block;
+			min-height: 44px;
+			padding: 12px 20px;
+			text-align: center;
+			width: 100%;
+		}
+	}
+
+	.llms-button-primary,
+	.llms-button-secondary,
+	.llms-button-action {
+		border-radius: 6px;
+		transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+
+		&:focus-visible {
+			outline: 3px solid var(--llms-color-primary);
+			outline-offset: 3px;
+		}
+	}
+
+	.llms-access-plans {
+		padding: 20px;
+
+		.llms-access-plan {
+			float: none;
+			width: 100%;
+		}
+	}
+
+	@media screen and (max-width: $break-large) {
+		.llms-course-experience {
+			gap: 24px;
+			grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+		}
+	}
+
+	@media screen and (max-width: $break-medium) {
+		.entry-title,
+		.llms-title {
+			font-size: clamp(1.75rem, 7vw, 2.4rem);
+		}
+
+		.llms-course-image,
+		> .wp-post-image,
+		.llms-featured-image {
+			margin-bottom: 24px;
+		}
+
+		.llms-course-experience {
+			display: flex;
+			flex-direction: column;
+			margin-block: 32px;
+		}
+
+		.llms-course-progress {
+			order: -3;
+		}
+
+		.llms-meta-info {
+			order: -2;
+		}
+
+		.llms-access-plans {
+			order: -1;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		--llms-course-gap: 18px;
+
+		.llms-course-card,
+		.llms-meta-info,
+		.llms-instructor-info,
+		.llms-access-plans {
+			border-radius: 6px;
+			padding: 18px;
+		}
+
+		.llms-course-progress-action .llms-course-continue-button {
+			white-space: normal;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.llms-button-primary,
+		.llms-button-secondary,
+		.llms-button-action {
+			transition: none;
+		}
+	}
+}
+
+// Retain baseline spacing when course components are rendered outside a
+// standard single-course post wrapper (for example, through a shortcode).
 .llms-meta-info {
 	margin: 40px 0;
+
 	.llms-meta-title {
 		margin: 0;
 	}
+
 	.llms-meta {
 		p {
 			margin-bottom: 0;
 		}
+
 		span {
 			font-weight: 700;
 		}
 	}
 }
+
 .llms-course-progress {
 	margin: 40px auto;
 	max-width: 480px;
