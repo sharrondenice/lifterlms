@@ -11,6 +11,51 @@
 		}
 	}
 
+	// The syllabus template is also available through blocks and shortcodes.
+	// Provide a neutral baseline for the additive section controls when they
+	// render outside the modern single-course layout.
+	.llms-section-toggle {
+		align-items: center;
+		background: transparent;
+		border: 0;
+		color: inherit;
+		cursor: pointer;
+		display: flex;
+		font: inherit;
+		gap: 10px;
+		padding: 0;
+		text-align: left;
+		width: 100%;
+	}
+
+	.llms-section-name {
+		flex: 1;
+	}
+
+	.llms-section-count {
+		font-size: 0.8em;
+		font-weight: 400;
+	}
+
+	.llms-section-caret {
+		border-bottom: 2px solid currentColor;
+		border-right: 2px solid currentColor;
+		display: block;
+		height: 8px;
+		transform: rotate(45deg);
+		width: 8px;
+	}
+
+	.llms-section--closed .llms-section-caret {
+		transform: rotate(-45deg);
+	}
+
+	.llms-section-lessons {
+		.llms-lesson-preview:first-child {
+			border-top: 1px solid $color-border;
+		}
+	}
+
 }
 
 .llms-lesson-preview {
@@ -419,6 +464,10 @@
 			color: var(--llms-color-muted);
 			opacity: 0.55;
 		}
+	}
+
+	.llms-section-lessons .llms-lesson-preview:first-child {
+		border-top: 0;
 	}
 
 	@media screen and (max-width: 480px) {
