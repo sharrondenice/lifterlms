@@ -5,7 +5,8 @@
  * @author   LifterLMS
  * @package  LifterLMS/Templates
  * @since    1.0.0
- * @version  3.0.3
+ * @since    [version] Added a layout wrapper around the after-summary course components.
+ * @version  [version]
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -23,4 +24,9 @@ defined( 'ABSPATH' ) || exit;
  * @hooked - lifterlms_template_single_course_progress - 60
  * @hooked - lifterlms_template_single_syllabus - 90
  */
+?>
+<div class="llms-course-experience">
+	<?php
 do_action( 'lifterlms_single_course_after_summary' );
+	?>
+</div>
